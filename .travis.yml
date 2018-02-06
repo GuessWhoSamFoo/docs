@@ -1,20 +1,21 @@
 language: python
 python:
   - "3.6"
+
 cache:
     pip: true
-    directories:
-    - node_modules
+
 env:
-  - TEST_SUITE=./ci/scripts/vale.sh
-  - TEST_SUITE=./ci/scripts/pytest.sh
+  - TEST_SUITE=vale
+  - TEST_SUITE=pytest
 
 before_install:
-  - echo "Installing Hugo 0.36"
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.36/hugo_0.36_Linux-64bit.deb
-  - sudo dpkg -i hugo*.deb
-  - hugo server &
+  - if [ $TEST_SUITE == pytest ]; then
+      wget https://github.com/gohugoio/hugo/releases/download/v0.36/hugo_0.36_Linux-64bit.deb;
+      sudo dpkg -i hugo*.deb;
+      (hugo server &);
+    fi
   - sleep 7
 
 script:
-  - $TEST_SUITE
+  - ./ci/scripts/$TEST_SUITE.sh

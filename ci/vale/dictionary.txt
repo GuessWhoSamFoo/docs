@@ -76,6 +76,7 @@ backports
 backreference
 backreferences
 backtick
+backticks
 bak
 bampton
 bandwdith
@@ -480,6 +481,7 @@ hd0
 hdfs
 heartbleed
 hiera
+hilights
 hl2
 hl2
 hmac
@@ -719,6 +721,7 @@ md5
 md5sum
 mdev
 mediawiki
+meltdownattack
 memcached
 menuentry
 mesos
@@ -740,6 +743,7 @@ misconfigurations
 misconfigured
 mkdir
 mnesia
+moby
 modsecurity
 mongodb
 monit
@@ -1167,6 +1171,8 @@ stopwait
 su
 subcommand
 subcommands
+subfile
+subfiles
 subfolder
 subkey
 subkeys
@@ -1403,6 +1409,7 @@ worker2
 wp
 wpuser
 writecaps
+ws
 wsgi
 wsrep
 www

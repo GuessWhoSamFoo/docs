@@ -10,21 +10,16 @@ matrix:
 jobs:
   include:
     - stage: vale
-      install: go get github.com/ValeLint/vale
+      install:
+        - ./ci/install/hugo_server.sh
+        - go get github.com/ValeLint/vale
       script:
         - vale --glob='*.{md}' docs
 
     - stage: scripts
       install:
-        - echo "Installing Hugo 0.31.1"
-        - wget https://github.com/gohugoio/hugo/releases/download/v0.31/hugo_0.31_Linux-64bit.deb
-        - sudo dpkg -i hugo*.deb
-        - hugo version
+        - ./ci/install/hugo_server.sh
         - pip install -r ci/requirements.txt
-      before_script:
-        - echo "Setting up local development server"
-        - hugo server &
-        - sleep 7
       script:
         - echo "Checking for style guidelines"
         - python -m pytest -n 2

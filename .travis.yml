@@ -5,21 +5,16 @@ cache:
     pip: true
     directories:
     - node_modules
+env:
+  - TEST_SUITE=./ci/scripts/vale.sh
+  - TEST_SUITE=./ci/scripts/pytest.sh
 
-jobs:
-  include:
-    - stage: vale
-      install:
-        - ./ci/install/hugo_server.sh
-        - go get github.com/ValeLint/vale
-      script:
-        - vale --glob='*.{md}' docs
+before_install:
+  - echo "Installing Hugo 0.36"
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.36/hugo_0.36_Linux-64bit.deb
+  - sudo dpkg -i hugo*.deb
+  - hugo server &
+  - sleep 7
 
-    - stage: scripts
-      install:
-        - ./ci/install/hugo_server.sh
-        - pip install -r ci/requirements.txt
-      script:
-        - echo "Checking for style guidelines"
-        - python -m pytest -n 2
-
+script:
+  - $TEST_SUITE

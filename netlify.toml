@@ -1,5 +1,6 @@
 [context.deploy-preview.environment]
 HUGO_VERSION = "0.37.1"
+BASE = "/docs/"
 
 [context.deploy-preview]
-command = "hugo --buildDrafts --buildFuture --baseURL $DEPLOY_PRIME_URL"
+command = "hugo --buildDrafts --buildFuture --baseURL $DEPLOY_PRIME_URL$BASE"

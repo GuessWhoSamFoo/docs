@@ -1,1 +1,2 @@
-/* /docs/:splat
+/getting-started/*  /docs/getting-started/:splat
+/quick-answers/*    /docs/quick-answers/:splat
